@@ -15,7 +15,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $drivres = Driver:all();
+        $drivres = Driver::all();
         return view('Driver/index')->with('drivers', $drivers);
     }
 
@@ -83,6 +83,8 @@ class DriverController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Driver::findOrFail($id);
+        $item->delete();
+        return redirect()->route('driver.index');
     }
 }
